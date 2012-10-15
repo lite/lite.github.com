@@ -1,0 +1,364 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>chef_on_ec2 - Lite</title>
+  <meta name="author" content="Lite">
+
+  
+  <meta name="description" content="aws security groups 22 (SSH) 0.0.0.0/0 Delete
+80 (HTTP) 0.0.0.0/0 Delete ssh-keygen -R www.fssle.com
+ssh -i fssle-ec2.pem ubuntu@www.fssle.com aws &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://lite.github.com/blog/2011/11/08/chef-on-ec2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Lite" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo">
+  	<div id="logoLeft">{</div>
+  	<div id="logoText">kok</div>
+  	<div id="logoRight">}</div>
+  	<div class="clear"></div>
+  </div>
+  <h1><a href="/">Lite</a></h1>
+  
+    <h2>Beauty is Truth, Truth Beauty</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:lite.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Chef_on_ec2</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-08T00:17:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="http://console.aws.amazon.com/ec2/home?region=us-west-1&amp;#s=SecurityGroups">aws security groups</a></p>
+
+<pre><code>22 (SSH)  0.0.0.0/0 Delete
+80 (HTTP) 0.0.0.0/0 Delete
+
+ssh-keygen -R www.fssle.com
+ssh -i fssle-ec2.pem ubuntu@www.fssle.com
+</code></pre>
+
+<p><a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">aws access key</a></p>
+
+<pre><code>export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+</code></pre>
+
+<p><a href="http://uec-images.ubuntu.com/server/releases/11.04/release/">ubuntu ec2 image</a></p>
+
+<pre><code>knife[:aws_access_key_id]     = "#{ENV['AWS_ACCESS_KEY_ID']}"
+knife[:aws_secret_access_key] = "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+knife[:identity_file]         = 'fssle-ec2.pem'
+knife[:aws_ssh_key_id]        = "fssle-ec2"
+knife[:availability_zone]     = 'us-west-1a'
+knife[:region]                = 'us-west-1'
+knife[:aws_image_id]          = 'ami-43580406'
+
+knife ec2 server list
+knife ec2 server delete i-296cd36e
+knife ec2 server create -I ami-43580406 -f t1.micro -x ubuntu -G default 
+</code></pre>
+
+<p><a href="https://community.opscode.com/users/username/user_key/new">opscode user key</a></p>
+
+<pre><code>username.pem 
+knife.rb 
+org-validator.pem
+</code></pre>
+
+<ul>
+<li>chef</li>
+</ul>
+
+
+<blockquote><ul>
+<li>role</li>
+</ul>
+</blockquote>
+
+<pre><code>knife role list
+export EDITOR=vim &amp;&amp; knife role create base
+knife role edit base
+knife role show base
+knife role from file roles/base.rb
+</code></pre>
+
+<blockquote><ul>
+<li>cookbook</li>
+</ul>
+</blockquote>
+
+<pre><code>knife cookbook site download apt
+knife cookbook site download aws
+knife cookbook site download apache2
+
+knife cookbook create fssle
+knife cookbook list
+knife cookbook upload aws apt apache2
+</code></pre>
+
+<blockquote><ul>
+<li>ec2</li>
+</ul>
+</blockquote>
+
+<pre><code>knife ec2 server create "role[fssle]" -I ami-43580406 -f t1.micro -G default -region -S knife -i ./fssle-ec2.pem --ssh-user ubuntu 
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lite</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-08T00:17:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/devops/'>devops</a>, <a class='category' href='/blog/categories/ec2/'>ec2</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2011/10/31/vagrant-and-veewee/" title="Previous Post: vagrant and veewee">&laquo; vagrant and veewee</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2011/12/16/dnscrypt/" title="Next Post: dnscrypt">dnscrypt &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <ul id="recent_posts">
+      <li class="post">
+      <a href="http://lite.github.com" alt="Home"><img src="/images/Home.png"></a>
+      <a href="http://lite.github.com/archives/" alt="Archives"><img src="/images/Calendar.png"></a>
+      <a href="mailto:litekok@gmail.com" alt="E-Mail"><img src="/images/Envelope.png"></a>
+      <a href="http://lite.github.com/atom.xml" alt="subscribe feed"><img src="/images/RSS.png"></a>
+      </li>
+  </ul>
+</section>
+<section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/15/gzip-on-nginx/">gzip-on-nginx</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/02/programmers-quotes/">programmers-quotes</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/28/expect-split-and-tcpdump/">expect-split-and-tcpdump</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/08/brew-tap/">brew tap</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/04/emacs-live/">emacs-live</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Douban</h1>
+  <script type="text/javascript" src="http://www.douban.com/service/badge/litekok/?show=collection&amp;n=8&amp;columns=2" ></script>
+</section>
+
+
+<section>
+  <h1>Latest Weibo</h1>
+  <iframe width="80%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=2283001861&verifier=08ec6ff2&dpc=1"></iframe>
+</section>
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/lite">@lite</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'lite',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Lite -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'fssle';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lite.github.com/blog/2011/11/08/chef-on-ec2/';
+        var disqus_url = 'http://lite.github.com/blog/2011/11/08/chef-on-ec2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

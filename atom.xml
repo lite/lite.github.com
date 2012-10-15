@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Lite]]></title>
+  <link href="http://lite.github.com/atom.xml" rel="self"/>
+  <link href="http://lite.github.com/"/>
+  <updated>2012-10-15T23:03:27+08:00</updated>
+  <id>http://lite.github.com/</id>
+  <author>
+    <name><![CDATA[Lite]]></name>
+    <email><![CDATA[litekok@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[gzip-on-nginx]]></title>
+    <link href="http://lite.github.com/blog/2012/10/15/gzip-on-nginx/"/>
+    <updated>2012-10-15T22:44:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/10/15/gzip-on-nginx</id>
+    <content type="html"><![CDATA[<p>add gzip support in conf/nginx.conf</p>
+
+<pre><code>gzip            on;
+gzip_comp_level 5;
+gzip_min_length 1024;
+gzip_types      text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript image/jpeg image/gif image/png;
+gzip_proxied    expired no-cache no-store private auth;
+gzip_disable    "MSIE [1-6]\.";
+</code></pre>
+
+<p>reload nginx</p>
+
+<pre><code>sbin/nginx -s reload
+</code></pre>
+
+<p>test by curl</p>
+
+<pre><code>curl -I --compressed http://fssle.com/8/config/txt/task.xml
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[programmers-quotes]]></title>
+    <link href="http://lite.github.com/blog/2012/10/02/programmers-quotes/"/>
+    <updated>2012-10-02T23:30:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/10/02/programmers-quotes</id>
+    <content type="html"><![CDATA[<ul>
+<li>Life’s too short to build something nobody wants – Ash Maurya, Running Lean</li>
+<li>Give someone a program, you frustrate them for a day; teach them how to program, you frustrate them for a lifetime. – David Leinweber</li>
+<li>There are two ways of constructing a software design: One way is to make it so simple that there are obviously no deficiencies and the other way is to make it so complicated that there are no obvious deficiencies. — C.A.R. Hoare</li>
+<li>Actually, I’m trying to make Ruby natural, not simple. Ruby is simple in appearance, but is very complex inside, just like our human body. – Matz, Ruby</li>
+<li>Much of the essence of building a program is in fact the debugging of the specification. – Fred Brooks, The Mythical Man-Month</li>
+<li>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time. – Tom Cargill</li>
+<li>Complication is What Happens When You Try to Solve a Problem You Don’t Understand – Andy Boothe</li>
+<li>Weeks of programming can save you hours of planning. – Unknown</li>
+<li>Controlling complexity is the essence of computer programming. — Brian Kernighan</li>
+<li>All problems in computer science can be solved by another level of indirection(abstraction) – David Wheeler</li>
+<li>…except for the problem of too many layers of indirection. – Kevlin Henney’s corollary</li>
+<li>Programming today is a race between software engineers striving to build bigger and better idiot-proof programs, and the Universe trying to produce bigger and better idiots. So far, the Universe is winning. — Rick Cook</li>
+<li>Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it. — Brian W. Kernighan</li>
+<li>I’m not a great programmer; I’m just a good programmer with great habits. ― Kent Beck</li>
+<li>Most of you are familiar with the virtues of a programmer. There are three, of course: laziness, impatience, and hubris. – Larry Wall, Perl</li>
+<li>Any fool can write code that a computer can understand. Good programmers write code that humans can understand. – Martin Fowler</li>
+<li>Measuring programming progress by lines of code is like measuring aircraft building progress by weight. – Bill Gates</li>
+<li>It’s not a bug – it’s an undocumented feature. – Unknown</li>
+<li>The most depressing thing about life as a programmer, I think, is if you’re faced with a chunk of code that either someone else wrote or, worse still, you wrote yourself but you no longer dare to modify. That’s depressing. – Peyton Jones</li>
+<li>It works on my machine! – Most of programmers</li>
+<li>Talk is cheap. Show me the code. – Linus Torvalds</li>
+<li>I thought of objects being like biological cells and/or individual computers on a network, only able to communicate with messages — Alan Kay, Smalltalk</li>
+<li>When you choose a language, you’re choosing more than a set of technical trade-offs—you’re choosing a community. -Joshua Bloch</li>
+<li>Quality, Speed or Cheap. Pick two. – Unknown</li>
+<li>Developer testing isn’t primarily about verifying code. It’s about making great code. If you can’t test something, it might be your testing skills failing you but it’s probably your code code’s design. Testable code is almost always better code. – Chad Fowler</li>
+<li>We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. – Donald Knuth</li>
+<li>No code is faster than no code. – Merb core tenet</li>
+<li>If you’re the smartest person in the room, you’re in the wrong room. – Unknown</li>
+<li>How long would it take your organization to deploy a change (to production) that involves just one single line of code? Do you do this on a repeatable, reliable basis? – Mary Poppendieck</li>
+<li>Nine people can’t make a baby in a month.  — Fred Brooks, The Mythical Man-Month</li>
+<li>Good code is its own best documentation. As you’re about to add a comment, ask yourself, ‘How can I improve the code so that this comment isn’t needed?’ Improve the code and then document it to make it even clearer. – Steve McConnell, Code Complete</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[expect-split-and-tcpdump]]></title>
+    <link href="http://lite.github.com/blog/2012/08/28/expect-split-and-tcpdump/"/>
+    <updated>2012-08-28T20:25:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/08/28/expect-split-and-tcpdump</id>
+    <content type="html"><![CDATA[<h1>tcpdump</h1>
+
+<pre><code>tcpdump -x -vv  -i en0 "tcp port 8001"
+</code></pre>
+
+<p>SuSE:</p>
+
+<pre><code>tcpdump port 8001 -X -vv
+</code></pre>
+
+<h1>expect</h1>
+
+<p>ssh_config:</p>
+
+<pre><code>host test
+    user app100642705
+    hostname 10.1.2.15 
+    port 3322
+    identityfile pkey
+</code></pre>
+
+<p>myshell.sh:</p>
+
+<pre><code>#!/usr/bin/expect -f
+spawn ssh -F ssh_config test
+expect "*(yes/no)?" {
+    send "yes\r"
+}
+interact #expect eof
+</code></pre>
+
+<h1>split</h1>
+
+<pre><code>tar -czvf - test | split -b 50m - test.tar.gz
+cat test.tar.gz.a* &gt; - | tar -zxvf - 
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[brew tap]]></title>
+    <link href="http://lite.github.com/blog/2012/08/08/brew-tap/"/>
+    <updated>2012-08-08T22:23:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/08/08/brew-tap</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/mxcl/homebrew/wiki/Interesting-Taps-%26-Branches">Interesting Taps &amp; Branches</a></p>
+
+<pre><code>brew tap larsimmisch/avr
+brew install avr-libc
+</code></pre>
+
+<p>install proxychains(or tsocks)</p>
+
+<pre><code>brew tap lite/alt
+brew install proxychains
+</code></pre>
+
+<p>curl lcms when installing imagemagick</p>
+
+<pre><code>brew edit lcms
+url 'http://www.littlecms.com/1/lcms-1.19.tar.gz'
+
+brew edit imagemagick
+url 'http://studio.imagemagick.net/download/ImageMagick-6.7.8-8.tar.bz2'
+
+git push git@github.com:lite/homebrew.git
+brew install imagemagick
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[emacs-live]]></title>
+    <link href="http://lite.github.com/blog/2012/07/04/emacs-live/"/>
+    <updated>2012-07-04T06:55:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/07/04/emacs-live</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/overtone/emacs-live">emacs-live</a></p>
+
+<p>Energy starts surging through your fingertips. Sparks fly, making
+the shadows grow and flicker ominously around you. You arch your
+back and open your eyes as if for the first time. The text appears
+more vibrant and colourful than you remember. Your fingers dance on
+the keyboard commanding the cursor with a joyful precision and
+control.</p>
+
+<p>You lean back and marvel as a shimmering swirl of syntactic and
+symantic structures project out of the screen and intertwine with a
+fractal beauty. You watch as meaning recursively unfolds into deeper
+meaning live in front of your eyes. You feel a deep and lasting
+synchronicity form as the boundaries between you and your Emacs
+wash away. You and your Emacs Live.</p>
+
+<p>M-x start-hacking.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[code monkey]]></title>
+    <link href="http://lite.github.com/blog/2012/06/24/code-monkey/"/>
+    <updated>2012-06-24T07:15:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/06/24/code-monkey</id>
+    <content type="html"><![CDATA[<p><a href="http://v.youku.com/v_show/id_XMjk4OTI3NDc2.html">Code Monkey AMV</a></p>
+
+<p>Lyrics:</p>
+
+<pre><code>Code Monkey get up get coffee. Code Monkey go to job.
+Code monkey have boring meeting, boring manager Rob.
+Rob say Code Monkey very diligent. But his output stink.
+His code not functional or elegant. What do Code Monkey think?
+Code Monkey think maybe manager wanna write goddamn login page himself.
+Code Monkey not say it out loud.
+Code Monkey not crazy just proud.
+
+Chorus
+
+Code Monkey like Fritos.
+Code Monkey like Tab and Mountain Dew.
+Code Monkey very simple man
+Big warm fuzzy secret heart
+Code Monkey like you.
+Code Monkey like you.
+
+Code Monkey hang around at front desk
+Tell you sweater look nice
+Code Monkey offer buy you soda
+Bring you cup bring you ice
+You say no thank you for the soda 
+cause soda make you fat
+Anyway you busy with the telephone
+no time for chat.
+
+Code Monkey have long walk back to cubicle
+He sit down pretend to work.
+Code Monkey not thinking so straight.
+Code Monkey not feeling so great.
+
+Chorus
+
+Code Monkey like you lots.
+Code Monkey have every reason
+To get out this place.
+Code Monkey just keep on working
+See your soft pretty face
+Much rather wake up eat a coffee cake
+Take bath, take nap
+This job fulfilling in creative way
+Such a load of crap.
+Code Monkey think someday he have everything even pretty girl like you.
+Code Monkey just waiting for now.
+Code Monkey say someday, somehow.
+
+Chorus
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[git tools]]></title>
+    <link href="http://lite.github.com/blog/2012/05/09/git-tools/"/>
+    <updated>2012-05-09T06:28:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/05/09/git-tools</id>
+    <content type="html"><![CDATA[<p>git rm deleted files</p>
+
+<pre><code>git status -s | grep "^ D" | awk '{print $2}' | xargs git rm
+</code></pre>
+
+<p>git tools</p>
+
+<ul>
+<li><a href="http://github.com/nvie/gitflow">gitflow</a></li>
+<li><a href="http://repo.or.cz/w/topgit.git">topgit</a></li>
+<li><a href="http://github.com/jonas/tig">tig</a></li>
+</ul>
+
+
+<p>git docs</p>
+
+<ul>
+<li><a href="http://help.github.com/send-pull-requests/">github pull-requests</a></li>
+<li><a href="http://nvie.com/posts/a-successful-git-branching-model/">a successful git branching model</a></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[archlinux on vmware]]></title>
+    <link href="http://lite.github.com/blog/2012/02/17/archlinux-on-vmware/"/>
+    <updated>2012-02-17T04:35:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/02/17/archlinux-on-vmware</id>
+    <content type="html"><![CDATA[<h2>Enable networking</h2>
+
+<p>append to /etc/rc.conf</p>
+
+<pre><code>eth0="dhcp"
+INTERFACE=(eth0)
+ROUTES=(!gateway)
+</code></pre>
+
+<p>run command &#8220;/etc/rc.d/network restart&#8221;</p>
+
+<h2>Enable pacman repo</h2>
+
+<p>append to &#8220;/etc/pacman.conf&#8221;</p>
+
+<pre><code>SigLevel=Optional TrustAll 
+</code></pre>
+
+<p>uncomment the repo in &#8220;/etc/pacman.d/mirrorlist&#8221;</p>
+
+<h2>Upgrade</h2>
+
+<pre><code>pacman -Syu
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[slash]]></title>
+    <link href="http://lite.github.com/blog/2012/02/15/slash/"/>
+    <updated>2012-02-15T18:45:00+08:00</updated>
+    <id>http://lite.github.com/blog/2012/02/15/slash</id>
+    <content type="html"><![CDATA[<p><a href="http://zespia.tw/Octopress-Theme-Slash/index_tw.html">Octopress themes - Slash</a></p>
+
+<pre><code>cd octopress
+git clone git@github.com:tommy351/Octopress-Theme-Slash.git .themes/slash
+rake install['slash']
+rake generate
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[zte_ct_x920 on ubuntu]]></title>
+    <link href="http://lite.github.com/blog/2011/12/28/zte-ct-x920-on-ubuntu/"/>
+    <updated>2011-12-28T16:51:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/12/28/zte-ct-x920-on-ubuntu</id>
+    <content type="html"><![CDATA[<p><a href="http://blog.163.com/dengjingniurou@126/blog/static/5398919620111112111659617/">android udev</a></p>
+
+<p>adb devices</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>List of devices attached
+</span><span class='line'>????????????    no permissions</span></code></pre></td></tr></table></div></figure>
+
+
+<p>lsusb</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Bus 001 Device 050: ID 19d2:ffda ONDA Communication S.p.A. </span></code></pre></td></tr></table></div></figure>
+
+
+<p>sudo vim /etc/udev/rules.d/51-Android.rules</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SUBSYSTEM=="usb", SYSFS{idVendor}=="19d2", MODE="0666"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>sudo chmod a+r /etc/udev/rules.d/51-Android.rules
+sudo /etc/init.d/udev stop
+sudo /etc/init.d/udev start</p>
+
+<p>then re-plug the cable</p>
+
+<p>adb devices</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>List of devices attached 
+</span><span class='line'>X920_CT device</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ginatra]]></title>
+    <link href="http://lite.github.com/blog/2011/12/19/ginatra/"/>
+    <updated>2011-12-19T09:10:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/12/19/ginatra</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/lenary/ginatra">ginatra</a></p>
+
+<p>setup</p>
+
+<pre><code>sudo apt-get install python-pip
+sudo pip install pygments
+gem install ginatra
+</code></pre>
+
+<p>repo directory</p>
+
+<pre><code>ginatra setup
+ginatra directory add '~/git/repo'
+ginatra directory list
+</code></pre>
+
+<p>server</p>
+
+<pre><code>ginatra server start
+ginatra server stop
+ginatra daemon start
+ginatra daemon status
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[dnscrypt]]></title>
+    <link href="http://lite.github.com/blog/2011/12/16/dnscrypt/"/>
+    <updated>2011-12-16T22:56:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/12/16/dnscrypt</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/opendns/dnscrypt-proxy">dnscrypt</a></p>
+
+<p>download</p>
+
+<pre><code>git clone git://github.com/opendns/dnscrypt-proxy.git
+</code></pre>
+
+<p>view README.markdown
+install</p>
+
+<pre><code>./autogen.sh &amp;&amp; ./configure &amp;&amp; make &amp;&amp; make check
+sudo make install
+</code></pre>
+
+<p>in file /etc/resolv.conf</p>
+
+<pre><code>nameserver 127.0.0.1
+sudo chattr +i /etc/resolv.conf
+sudo dnscrypt-proxy --daemonize
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[chef_on_ec2]]></title>
+    <link href="http://lite.github.com/blog/2011/11/08/chef-on-ec2/"/>
+    <updated>2011-11-08T00:17:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/11/08/chef-on-ec2</id>
+    <content type="html"><![CDATA[<p><a href="http://console.aws.amazon.com/ec2/home?region=us-west-1&amp;#s=SecurityGroups">aws security groups</a></p>
+
+<pre><code>22 (SSH)  0.0.0.0/0 Delete
+80 (HTTP) 0.0.0.0/0 Delete
+
+ssh-keygen -R www.fssle.com
+ssh -i fssle-ec2.pem ubuntu@www.fssle.com
+</code></pre>
+
+<p><a href="https://aws-portal.amazon.com/gp/aws/developer/account/index.html?action=access-key">aws access key</a></p>
+
+<pre><code>export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+</code></pre>
+
+<p><a href="http://uec-images.ubuntu.com/server/releases/11.04/release/">ubuntu ec2 image</a></p>
+
+<pre><code>knife[:aws_access_key_id]     = "#{ENV['AWS_ACCESS_KEY_ID']}"
+knife[:aws_secret_access_key] = "#{ENV['AWS_SECRET_ACCESS_KEY']}"
+knife[:identity_file]         = 'fssle-ec2.pem'
+knife[:aws_ssh_key_id]        = "fssle-ec2"
+knife[:availability_zone]     = 'us-west-1a'
+knife[:region]                = 'us-west-1'
+knife[:aws_image_id]          = 'ami-43580406'
+
+knife ec2 server list
+knife ec2 server delete i-296cd36e
+knife ec2 server create -I ami-43580406 -f t1.micro -x ubuntu -G default 
+</code></pre>
+
+<p><a href="https://community.opscode.com/users/username/user_key/new">opscode user key</a></p>
+
+<pre><code>username.pem 
+knife.rb 
+org-validator.pem
+</code></pre>
+
+<ul>
+<li>chef</li>
+</ul>
+
+
+<blockquote><ul>
+<li>role</li>
+</ul>
+</blockquote>
+
+<pre><code>knife role list
+export EDITOR=vim &amp;&amp; knife role create base
+knife role edit base
+knife role show base
+knife role from file roles/base.rb
+</code></pre>
+
+<blockquote><ul>
+<li>cookbook</li>
+</ul>
+</blockquote>
+
+<pre><code>knife cookbook site download apt
+knife cookbook site download aws
+knife cookbook site download apache2
+
+knife cookbook create fssle
+knife cookbook list
+knife cookbook upload aws apt apache2
+</code></pre>
+
+<blockquote><ul>
+<li>ec2</li>
+</ul>
+</blockquote>
+
+<pre><code>knife ec2 server create "role[fssle]" -I ami-43580406 -f t1.micro -G default -region -S knife -i ./fssle-ec2.pem --ssh-user ubuntu 
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[vagrant and veewee]]></title>
+    <link href="http://lite.github.com/blog/2011/10/31/vagrant-and-veewee/"/>
+    <updated>2011-10-31T23:51:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/10/31/vagrant-and-veewee</id>
+    <content type="html"><![CDATA[<p><a href="http://vagrantup.comi">vagrant</a></p>
+
+<p><a href="https://github.com/jedi4ever/veewee">veewee</a></p>
+
+<pre><code>vagrant basebox templates
+mkdir iso
+vagrant basebox define 'fssle' 'ubuntu-11.04-server-i386'
+vagrant basebox build 'fssle'
+vagrant basebox validate 'fssle'
+vagrant basebox export 'fssle'
+vagrant box add 'fssle' 'fssle'
+vagrant init 'fssle'
+vagrant up
+vagrant reload
+vagrant ssh
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[showoff on heroku]]></title>
+    <link href="http://lite.github.com/blog/2011/10/27/showoff-on-heroku/"/>
+    <updated>2011-10-27T20:46:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/10/27/showoff-on-heroku</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/schacon/showoff">showoff</a></p>
+
+<pre><code>heroku config:add SHOWOFF_EVAL_RUBY=1
+
+showoff create . -d ruby
+showoff add title -d ruby
+showoff serve
+showoff heroku slide
+</code></pre>
+
+<p><a href="http://showoff.io/">showoff-io</a></p>
+
+<pre><code>show 9090
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[octopress on heroku]]></title>
+    <link href="http://lite.github.com/blog/2011/10/25/octopress-on-heroku/"/>
+    <updated>2011-10-25T00:56:00+08:00</updated>
+    <id>http://lite.github.com/blog/2011/10/25/octopress-on-heroku</id>
+    <content type="html"><![CDATA[<p><a href="http://octopress.org/docs/blogging/">blogging</a></p>
+
+<pre><code>rake generate
+rake preview
+</code></pre>
+
+<p><a href="http://octopress.org/docs/deploying/heroku/">heroku</a></p>
+
+<pre><code>heroku create lite
+git remote add heroku git@heroku.com:lite.git
+rake new_post[octopress]
+git push heroku master
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>
