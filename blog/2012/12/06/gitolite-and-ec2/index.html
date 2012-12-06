@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ops - Lite</title>
+  <title>Run your own Git server with Gitolite and Amazon EC2 - Lite</title>
   <meta name="author" content="Lite">
 
   
-  <meta name="description" content="Category: ops">
+  <meta name="description" content="Run your own Git server with Gitolite and Amazon EC2 Create user useradd git -g wheel --create-home --shell /usr/bin/git-shell AllowUsers git in &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lite.github.comblog/categories/ops/">
+  <link rel="canonical" href="http://lite.github.com/blog/2012/12/06/gitolite-and-ec2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,36 +83,124 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ops</h1>
+    
+      
+        <h1 class="entry-title">Run Your Own Git Server With Gitolite and Amazon EC2</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-06T16:57:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="http://edvanbeinum.com/run-your-own-git-server-with-gitolite-and-amazon-ec2">Run your own Git server with Gitolite and Amazon EC2</a></p>
 
-  
-  <h2>2012</h2>
+<p>Create user</p>
 
-<article>
-  
-<h1><a href="/blog/2012/10/15/gzip-on-nginx/">gzip on nginx</a></h1>
-<time datetime="2012-10-15T22:44:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>15</span> <span class='year'>2012</span></time>
+<pre><code>useradd git -g wheel --create-home --shell /usr/bin/git-shell
+</code></pre>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/ops/'>ops</a></span>
-</footer>
+<p>AllowUsers git in sshd_config</p>
 
+<p>Install gitolite</p>
 
-</article>
+<pre><code>sudo yum -y install perl-CPAN perl-Time-HiRes
 
+perl -MCPAN -e shell
+    o conf urllist http://cpan.yahoo.com/
+    o conf commit
+    install CPAN
+    reload cpan
+
+git clone git://github.com/sitaramc/gitolite
+mkdir -p $HOME/bin
+gitolite/install -to $HOME/bin
+bin/gitolite setup -pk YourName.pub
+</code></pre>
+
+<p>Testing git by ssh</p>
+
+<pre><code>ssh -i dli.pem ec2-user@aws
+ssh -Nqf -D 7070 -i dli.pem ec2-user@aws
+git clone aws:gitolite-admin.git
+git clone aws:testing.git
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lite</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-06T16:57:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ec2/'>ec2</a>, <a class='category' href='/blog/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/11/15/captcha/" title="Previous Post: captcha">&laquo; captcha</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -133,6 +221,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/12/06/gitolite-and-ec2/">Run your own Git server with Gitolite and Amazon EC2</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/11/15/captcha/">captcha</a>
       </li>
     
@@ -146,10 +238,6 @@
     
       <li class="post">
         <a href="/blog/2012/10/02/programmers-quotes/">programmers-quotes</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/28/expect-split-and-tcpdump/">expect-split-and-tcpdump</a>
       </li>
     
   </ul>
@@ -215,7 +303,10 @@
       var disqus_shortname = 'fssle';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lite.github.com/blog/2012/12/06/gitolite-and-ec2/';
+        var disqus_url = 'http://lite.github.com/blog/2012/12/06/gitolite-and-ec2/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
