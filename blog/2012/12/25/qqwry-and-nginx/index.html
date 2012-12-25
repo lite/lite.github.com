@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: homebrew - Lite</title>
+  <title>QQwry and Nginx - Lite</title>
   <meta name="author" content="Lite">
 
   
-  <meta name="description" content="Category: homebrew">
+  <meta name="description" content="clone the modules from github git clone git://github.com/anjuke/ngx_http_qqwry_module.git
+git clone git://github.com/agentzh/echo-nginx-module.git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lite.github.comblog/categories/homebrew/">
+  <link rel="canonical" href="http://lite.github.com/blog/2012/12/25/qqwry-and-nginx/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,36 +84,133 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Homebrew</h1>
+    
+      
+        <h1 class="entry-title">QQwry and Nginx</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T14:50:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>clone the modules from github</p>
 
-  
-  <h2>2012</h2>
+<pre><code>git clone git://github.com/anjuke/ngx_http_qqwry_module.git
+git clone git://github.com/agentzh/echo-nginx-module.git
+</code></pre>
 
-<article>
-  
-<h1><a href="/blog/2012/08/08/brew-tap/">brew tap</a></h1>
-<time datetime="2012-08-08T22:23:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>08</span> <span class='year'>2012</span></time>
+<p>compile nginx</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/mac/'>Mac</a>, <a class='category' href='/blog/categories/homebrew/'>homebrew</a></span>
-</footer>
+<pre><code>./configure --with-debug --add-module=./ngx_http_qqwry_module/ --add-module=./echo-nginx-module/
+make
+</code></pre>
 
+<p>download <a href="http://update.cz88.net/soft/qqwry.rar">qqwry</a>
+convert qqwry.dat.gbk to qqwry.dat(utf8), and copy to nginx/conf folder.</p>
 
-</article>
+<pre><code>python qqwry_iconv.py
+</code></pre>
 
+<p>edit nginx.conf</p>
+
+<pre><code>http {
+    qqwry $remote_addr $qqwry_loc /conf/qqwry.dat;
+
+    server {
+        charset utf-8;
+
+        location /hello {
+            echo $remote_addr;
+            echo $qqwry_loc; 
+            if ($qqwry_loc ~ "浙江省北京市四川省成都市"){
+                echo "hello";
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>start nginx</p>
+
+<pre><code>objs/nginx -c conf/nginx.conf
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lite</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T14:50:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/devops/'>DevOps</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/12/06/gitolite-and-ec2/" title="Previous Post: Run your own Git server with Gitolite and Amazon EC2">&laquo; Run your own Git server with Gitolite and Amazon EC2</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -215,7 +313,10 @@
       var disqus_shortname = 'fssle';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lite.github.com/blog/2012/12/25/qqwry-and-nginx/';
+        var disqus_url = 'http://lite.github.com/blog/2012/12/25/qqwry-and-nginx/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
