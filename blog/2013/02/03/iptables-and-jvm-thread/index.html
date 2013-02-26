@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: ocr - Lite</title>
+  <title>Iptables and JVM thread - Lite</title>
   <meta name="author" content="Lite">
 
   
-  <meta name="description" content="Category: ocr">
+  <meta name="description" content="Iptables iptables -L
+iptables -F iptables -I INPUT -p TCP -m multiport --dports 8001:8005 -j REJECT iptables -I INPUT -p TCP -m multiport --dports &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://lite.github.comblog/categories/ocr/">
+  <link rel="canonical" href="http://lite.github.com/blog/2013/02/03/iptables-and-jvm-thread/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -83,36 +84,110 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Ocr</h1>
+    
+      
+        <h1 class="entry-title">Iptables and JVM Thread</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T13:12:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="http://www.dd-wrt.com/wiki/index.php/Iptables_command">Iptables</a></p>
 
-  
-  <h2>2012</h2>
+<pre><code>iptables -L
+iptables -F
 
-<article>
-  
-<h1><a href="/blog/2012/11/15/captcha/">captcha</a></h1>
-<time datetime="2012-11-15T11:15:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>15</span> <span class='year'>2012</span></time>
+iptables -I INPUT -p TCP -m multiport --dports 8001:8005 -j REJECT 
+iptables -I INPUT -p TCP -m multiport --dports 8001:8005 -s 8.8.0.0/16 -j ACCEPT
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/captcha/'>captcha</a>, <a class='category' href='/blog/categories/ocr/'>ocr</a>, <a class='category' href='/blog/categories/opencv/'>opencv</a></span>
-</footer>
+iptables -I OUTPUT -p TCP -d 10.142.20.0/24 -j REJECT
+</code></pre>
 
+<p>[JVM thread limit]</p>
 
-</article>
+<pre><code>-Xms   intial java heap size
+-Xmx   maximum java heap size
+-Xss   the stack size for each thread
 
+/proc/sys/kernel/pid_max
+/proc/sys/kernel/thread-max
+max_user_process（ulimit -u）
+/proc/sys/vm/max_map_count
+</code></pre>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Lite</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-03T13:12:00+08:00" pubdate data-updated="true">Feb 3<span>rd</span>, 2013</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2013/01/29/thin-with-rvm-as-a-system-service/" title="Previous Post: thin with rvm as a system service">&laquo; thin with rvm as a system service</a>
+      
+      
+        <a class="basic-alignment right articlenav" href="/blog/2013/02/26/nvidia-and-opensuse-12-dot-2/" title="Next Post: nvidia and openSUSE 12.2">nvidia and openSUSE 12.2 &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -215,7 +290,10 @@
       var disqus_shortname = 'fssle';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://lite.github.com/blog/2013/02/03/iptables-and-jvm-thread/';
+        var disqus_url = 'http://lite.github.com/blog/2013/02/03/iptables-and-jvm-thread/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
