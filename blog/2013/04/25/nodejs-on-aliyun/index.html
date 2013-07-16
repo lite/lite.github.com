@@ -140,9 +140,11 @@ tar xzvf node-latest.tar.gz &amp;&amp; cd `ls -rd node-v*`
 make install
 </code></pre>
 
-<p>Install coffeescript by npm</p>
+<p>Install coffeescript and forever by npm</p>
 
 <pre><code>npm install coffeescript
+npm install forever
+forever start -w app.js
 </code></pre>
 </div>
 
@@ -190,6 +192,8 @@ make install
         <a class="basic-alignment left articlenav" href="/blog/2013/03/08/tpb-afk/" title="Previous Post: TPB AFK">&laquo; TPB AFK</a>
       
       
+        <a class="basic-alignment right articlenav" href="/blog/2013/07/17/six-thinking-hats/" title="Next Post: Six Thinking Hats">Six Thinking Hats &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -219,6 +223,10 @@ make install
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/07/17/six-thinking-hats/">Six Thinking Hats</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/04/25/nodejs-on-aliyun/">nodejs on aliyun</a>
       </li>
     
@@ -232,10 +240,6 @@ make install
     
       <li class="post">
         <a href="/blog/2013/02/26/nvidia-and-opensuse-12-dot-2/">nvidia and openSUSE 12.2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/03/iptables-and-jvm-thread/">Iptables and JVM thread</a>
       </li>
     
   </ul>
