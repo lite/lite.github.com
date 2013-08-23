@@ -6,7 +6,8 @@
 	<title>Lite</title>
     <meta name="author" content="Lite">
     
-	<meta name="description" content="Published on: Nov 15th, 2012 Tags: captcha, ocr, opencv Captcha = Completely Automated Public Turing Test to Tell Computers and Humans Apart 二值化 + &hellip;">
+	<meta name="description" content="Published on: Dec 25th, 2012 Tags: DevOps clone the modules from github git clone git://github.com/anjuke/ngx_http_qqwry_module.git
+git clone git:// &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -96,6 +97,165 @@
 <!-- begin toload --> 
     <div id="content" class="inner">
         
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/25/qqwry-and-nginx/">
+		
+			QQwry and Nginx</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-25T14:50:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2012</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/devops/'>DevOps</a>
+
+
+</div>
+    </div>
+		<p>clone the modules from github</p>
+
+<pre><code>git clone git://github.com/anjuke/ngx_http_qqwry_module.git
+git clone git://github.com/agentzh/echo-nginx-module.git
+</code></pre>
+
+<p>compile nginx</p>
+
+<pre><code>./configure --with-debug --add-module=./ngx_http_qqwry_module/ --add-module=./echo-nginx-module/
+make
+</code></pre>
+
+<p>download <a href="http://update.cz88.net/soft/qqwry.rar">qqwry</a>
+convert qqwry.dat.gbk to qqwry.dat(utf8), and copy to nginx/conf folder.</p>
+
+<pre><code>python qqwry_iconv.py
+</code></pre>
+
+<p>edit nginx.conf</p>
+
+<pre><code>http {
+    qqwry $remote_addr $qqwry_loc /conf/qqwry.dat;
+
+    server {
+        charset utf-8;
+
+        location /hello {
+            echo $remote_addr;
+            echo $qqwry_loc; 
+            if ($qqwry_loc ~ "浙江省北京市四川省成都市"){
+                echo "hello";
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>start nginx</p>
+
+<pre><code>objs/nginx -c conf/nginx.conf
+</code></pre>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2012/12/25/qqwry-and-nginx//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
+
+
+    <article class="post">
+	<h2 class="title">
+		
+		<a href="/blog/2012/12/06/gitolite-and-ec2/">
+		
+			Run Your Own Git Server With Gitolite and Amazon EC2</a>
+	</h2>
+    <div class="entry-content">
+    <div class="meta">
+      <div class="date">Published on: 
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-06T16:57:00+08:00" pubdate data-updated="true">Dec 6<span>th</span>, 2012</time></div>
+      <div class="tags">Tags: 
+
+
+	<a class='category' href='/blog/categories/ec2/'>ec2</a>, <a class='category' href='/blog/categories/git/'>git</a>
+
+
+</div>
+    </div>
+		<p><a href="http://edvanbeinum.com/run-your-own-git-server-with-gitolite-and-amazon-ec2">Run your own Git server with Gitolite and Amazon EC2</a></p>
+
+<p>Create user</p>
+
+<pre><code>useradd git -g wheel --create-home --shell /usr/bin/git-shell
+</code></pre>
+
+<p>AllowUsers git in sshd_config</p>
+
+<p>Install gitolite</p>
+
+<pre><code>sudo yum -y install perl-CPAN perl-Time-HiRes
+
+perl -MCPAN -e shell
+    o conf urllist http://cpan.yahoo.com/
+    o conf commit
+    install CPAN
+    reload cpan
+
+git clone git://github.com/sitaramc/gitolite
+mkdir -p $HOME/bin
+gitolite/install -to $HOME/bin
+bin/gitolite setup -pk YourName.pub
+</code></pre>
+
+<p>Testing git by ssh</p>
+
+<pre><code>ssh -i dli.pem ec2-user@aws
+ssh -Nqf -D 7070 -i dli.pem ec2-user@aws
+git clone aws:gitolite-admin.git
+git clone aws:testing.git
+</code></pre>
+
+		
+		
+	</div>
+
+<div class="meta">
+	
+		<span class="comments"><a href="/blog/2012/12/06/gitolite-and-ec2//blog/page/2/index.html#disqus_thread">Comments</a></span>
+	
+</div>
+</article>
 
 
     <article class="post">
@@ -679,137 +839,6 @@ Chorus
 <div class="meta">
 	
 		<span class="comments"><a href="/blog/2012/06/24/code-monkey//blog/page/2/index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/05/09/git-tools/">
-		
-			Git Tools</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-09T06:28:00+08:00" pubdate data-updated="true">May 9<span>th</span>, 2012</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/git/'>git</a>
-
-
-</div>
-    </div>
-		<p>git rm deleted files</p>
-
-<pre><code>git status -s | grep "^ D" | awk '{print $2}' | xargs git rm
-</code></pre>
-
-<p>git tools</p>
-
-<ul>
-<li><a href="http://github.com/nvie/gitflow">gitflow</a></li>
-<li><a href="http://repo.or.cz/w/topgit.git">topgit</a></li>
-<li><a href="http://github.com/jonas/tig">tig</a></li>
-</ul>
-
-
-<p>git docs</p>
-
-<ul>
-<li><a href="http://help.github.com/send-pull-requests/">github pull-requests</a></li>
-<li><a href="http://nvie.com/posts/a-successful-git-branching-model/">a successful git branching model</a></li>
-</ul>
-
-
-		
-		
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2012/05/09/git-tools//blog/page/2/index.html#disqus_thread">Comments</a></span>
-	
-</div>
-</article>
-
-
-    <article class="post">
-	<h2 class="title">
-		
-		<a href="/blog/2012/02/17/archlinux-on-vmware/">
-		
-			Archlinux on Vmware</a>
-	</h2>
-    <div class="entry-content">
-    <div class="meta">
-      <div class="date">Published on: 
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-02-17T04:35:00+08:00" pubdate data-updated="true">Feb 17<span>th</span>, 2012</time></div>
-      <div class="tags">Tags: 
-
-
-	<a class='category' href='/blog/categories/archlinux/'>Archlinux</a>, <a class='category' href='/blog/categories/vmware/'>Vmware</a>
-
-
-</div>
-    </div>
-		<h2>Enable networking</h2>
-
-<p>append to /etc/rc.conf</p>
-
-<pre><code>eth0="dhcp"
-INTERFACE=(eth0)
-ROUTES=(!gateway)
-</code></pre>
-
-<p>run command &#8220;/etc/rc.d/network restart&#8221;</p>
-
-<h2>Enable pacman repo</h2>
-
-<p>append to &#8220;/etc/pacman.conf&#8221;</p>
-
-<pre><code>SigLevel=Optional TrustAll 
-</code></pre>
-
-<p>uncomment the repo in &#8220;/etc/pacman.d/mirrorlist&#8221;</p>
-
-<h2>Upgrade</h2>
-
-<pre><code>pacman -Syu
-</code></pre>
-
-		
-		
-	</div>
-
-<div class="meta">
-	
-		<span class="comments"><a href="/blog/2012/02/17/archlinux-on-vmware//blog/page/2/index.html#disqus_thread">Comments</a></span>
 	
 </div>
 </article>
